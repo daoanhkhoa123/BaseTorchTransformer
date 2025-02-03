@@ -51,5 +51,5 @@ class MultiHeadAttention(torch.nn.Module):
         score: torch.Tensor = self.attention(q, k, v, mask)
 
         # concat
-        score.contiguous().view(batch_size, self.d_key, self.d_model).transpose(1, 2)
+        score.contiguous().view(batch_size, seq_length, self.d_model).transpose(1, 2)
         return self.linear(score)
