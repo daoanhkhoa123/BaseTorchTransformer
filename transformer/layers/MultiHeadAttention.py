@@ -16,7 +16,7 @@ class MultiHeadAttention(nn.Module):
         self.w_v = nn.Linear(d_model, d_model, bias=False)
         
         self.attention = ScaleDotProductAttention()
-        self.linear = nn.Linear(n_heads//d_model, d_model) # self.d_key, d_model
+        self.linear = nn.Linear(d_model//n_heads, d_model) # self.d_key, d_model
         
     def forward(self, q:torchTensor,k:torchTensor,v:torchTensor, mask=None):
         """
